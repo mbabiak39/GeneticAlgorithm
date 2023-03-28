@@ -19,7 +19,9 @@ def fitness(solution, solution_idx):
     if total_weight > max_weight:
         fitness = -1 * (max_weight - total_weight)
     else:
-        fitness = total_value
+        # Add a penalty for solutions that do not exceed the maximum weight
+        penalty = 0.1 * (total_weight - max_weight)
+        fitness = total_value - penalty if penalty <= 0 else penalty
     return fitness
 
 
