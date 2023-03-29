@@ -1,15 +1,16 @@
 import utils
+import population
 
 
-def calculate_fitness(backpack: str):
+def calculate_fitness(backpack: list, backpack_indx: int):
     """
-    :param backpack: String of 0 and 1, total length 10
+    :param backpack: array of 1 and 0.
     :return: Total weight and price of items in backpack
     """
     weight = 0
     price = 0
-    for count, item in enumerate(backpack, start=1):
-        if item == '1':
+    for count, item in enumerate(list(backpack[backpack_indx])):
+        if int(item) == 1:
             weight += utils.INPUT_DATA_DICT.get(count).weight
             price += utils.INPUT_DATA_DICT.get(count).price
 
