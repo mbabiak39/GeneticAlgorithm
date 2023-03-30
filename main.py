@@ -8,7 +8,7 @@ population_size = 6
 num_generations = 100
 num_parents_mating = 2
 sol_per_pop = 20
-num_genes = len(utils.INPUT_DATA_DICT)
+num_genes = utils.CHROMOSOME_COUNT
 crossover_probability = 0.8
 mutation_probability = 0.1
 
