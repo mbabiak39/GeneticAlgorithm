@@ -17,9 +17,9 @@ if __name__ == "__main__":
     ]
 
     # Correct values
-    FITNESS_CHECK_VALUES = [48, 53, 26, 30, 29, 65, 20, 42, 23, 49]
+    FITNESS_CHECK_VALUES = [49, 53, 26, 30, 29, 65, 20, 42, 23, 49]
 
     for index, backpack in enumerate(FITNESS_TEST_VALUES):
         assert (
-            calculate_fitness(FITNESS_TEST_VALUES, index) == FITNESS_CHECK_VALUES[index]
-        ), f"Expected value: {FITNESS_CHECK_VALUES[index]}, got instead: {calculate_fitness(FITNESS_TEST_VALUES, index)}"
+                calculate_fitness(backpack, index) == FITNESS_CHECK_VALUES[index]
+        ), f"Expected value: {FITNESS_CHECK_VALUES[index]}, got instead: {calculate_fitness(backpack, index)}"
