@@ -1,15 +1,35 @@
+import this
+
 import pygad
 import utils
 from fitness import calculate_fitness
 from population import generate_population
 
 # Define the parameters
-population_size = 20
+population_size = 10
 num_generations = 10
 num_parents_mating = 2
 num_genes = utils.CHROMOSOME_COUNT
 crossover_probability = 0.8
 mutation_probability = 0.1
+
+
+def on_gen(algorithm: pygad.GA):
+    total_value = 0
+    total_weight = 0
+    for parent in algorithm.population:
+        for gene, index in enumerate(parent):
+            if gene == 1:
+                item = utils.INPUT_DATA_DICT.get(index)
+                total_value += item.price
+                total_weight += item.weight
+    avg_value = total_value / len(algorithm.population)
+    avg_weight = total_weight / len(algorithm.population)
+    print(f"Generation: {algorithm.generations_completed}")
+    print(f"Generation fitness values: {algorithm.last_generation_fitness}")
+    print(f"Average generation items value: {avg_value}")
+    print(f"Average generation items weight: {avg_weight}")
+
 
 # Create an instance of the GA class
 ga_instance = pygad.GA(
@@ -23,7 +43,8 @@ ga_instance = pygad.GA(
     crossover_probability=crossover_probability,
     mutation_probability=mutation_probability,
     fitness_func=calculate_fitness,
-    save_solutions=True
+    save_solutions=True,
+    on_generation=on_gen
 )
 
 if __name__ == "__main__":
@@ -65,5 +86,5 @@ if __name__ == "__main__":
     # Generate plot for visualization
     # ga_instance.plot_fitness(save_dir=f"results/Generation{GENERATIONS}")
     # Prepare for nextgen
-    ga_instance.plot_fitness(save_dir=f"Generation-Fitness")
-    ga_instance.plot_genes(save_dir="Genes", plot_type="bar")
+    ga_instance.plot_fitness(save_dir="results/Generation-Fitness")
+    ga_instance.plot_genes(save_dir="results/Genes", plot_type="bar")
