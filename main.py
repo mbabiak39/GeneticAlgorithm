@@ -1,5 +1,3 @@
-import this
-
 import pygad
 import utils
 from fitness import calculate_fitness
