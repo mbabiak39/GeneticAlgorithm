@@ -42,7 +42,7 @@ ga_instance = pygad.GA(
     mutation_probability=mutation_probability,
     fitness_func=calculate_fitness,
     save_solutions=True,
-    on_generation=on_gen
+    on_generation=on_gen,
 )
 
 if __name__ == "__main__":
@@ -65,7 +65,7 @@ if __name__ == "__main__":
             utils.INPUT_DATA_DICT.get(i).price
             for i in range(len(binary_solution))
             if binary_solution[i] == 1
-               and utils.INPUT_DATA_DICT.get(i).price is not None
+            and utils.INPUT_DATA_DICT.get(i).price is not None
         ]
     )
     print(f"Total value of items: {total_items_value}")
@@ -76,7 +76,7 @@ if __name__ == "__main__":
             utils.INPUT_DATA_DICT.get(i).weight
             for i in range(len(binary_solution))
             if binary_solution[i] == 1
-               and utils.INPUT_DATA_DICT.get(i).weight is not None
+            and utils.INPUT_DATA_DICT.get(i).weight is not None
         ]
     )
     print(f"Total weigth of items: {total_weight_value}")
@@ -84,5 +84,5 @@ if __name__ == "__main__":
     # Generate plot for visualization
     # ga_instance.plot_fitness(save_dir=f"results/Generation{GENERATIONS}")
     # Prepare for nextgen
-    ga_instance.plot_fitness(save_dir="results/Generation-Fitness")
-    ga_instance.plot_genes(save_dir="results/Genes", plot_type="bar")
+    ga_instance.plot_fitness()
+    ga_instance.plot_genes()
